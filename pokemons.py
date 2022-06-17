@@ -53,10 +53,10 @@ def delete_pokemon(conn, pokemon_name, table_name):
 if __name__ == "__main__":
 
 	result = get_pokemons(api_url)
-	print(result)
+	engine = create_sf_engine()
+	connection = engine.connect()
 	
-	# engine = create_sf_engine()
-	# connection = engine.connect()
-	# insert_into_snowflake(result, connection, "pokemons")
-	# connection.close()
-	# engine.dispose()
+	insert_into_snowflake(result, connection, "pokemons")
+
+	connection.close()
+	engine.dispose()
